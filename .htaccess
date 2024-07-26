@@ -1,5 +1,8 @@
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} \.php$
+RewriteCond %{REQUEST_URI} !/index\.php$
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+
+# Redirige todas las demás solicitudes que no sean archivos existentes a index.php
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-l
 RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
